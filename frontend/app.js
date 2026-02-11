@@ -1,6 +1,6 @@
 let token = null;
 
-// ----- Registro -----
+//  Registro 
 async function register() {
     const username = document.getElementById('reg-username').value;
     const password = document.getElementById('reg-password').value;
@@ -14,7 +14,7 @@ async function register() {
     alert(data.message || `Regisf8dtrado como ${data.username}`);
 }
 
-// ----- Login -----
+// Login 
 async function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
@@ -52,7 +52,7 @@ async function loadProducts() {
     const products = await res.json();
 
     const list = document.getElementById('product-list');
-    list.innerHTML = ''; // limpiar lista antes de volver a pintar
+    list.innerHTML = ''; 
 
     products.forEach(product => {
         const li = document.createElement('li');
@@ -73,7 +73,7 @@ async function loadProducts() {
     });
 }
 
-// ----- Agregar producto -----
+// ----- Agregar producto
 async function addProduct() {
     const name = document.getElementById('prod-name').value;
     const description = document.getElementById('prod-desc').value;
@@ -90,7 +90,7 @@ async function addProduct() {
     loadProducts();
 }
 
-// ----- Eliminar producto -----
+//  Eliminar producto 
 async function deleteProduct(id) {
     await fetch(`http://localhost:5000/api/products/${id}`, {
         method: 'DELETE',
@@ -99,7 +99,7 @@ async function deleteProduct(id) {
     loadProducts();
 }
 
-// ----- Editar producto -----
+//  Editar producto 
 async function editProduct(id, name, description, price) {
     const newName = prompt("Nombre:", name);
     const newDesc = prompt("Descripción:", description);

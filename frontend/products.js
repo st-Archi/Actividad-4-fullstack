@@ -6,29 +6,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = document.getElementById('message');
     const logoutBtn = document.getElementById('logoutBtn');
     const aldeanoSound = document.getElementById('aldeanoSound');
-    const salirSound = document.getElementById('salirSound'); // 🔊 NUEVO
+    const salirSound = document.getElementById('salirSound'); 
 
-    // Ocultar mensaje al inicio
+    
     message.style.display = 'none';
 
-    // 🔐 Verificar token
+   
     if (!token) {
         window.location.href = 'index.html';
         return;
     }
 
-    // 🚪 Cerrar sesión CON SONIDO
     if (logoutBtn) {
         logoutBtn.addEventListener('click', async () => {
-            // 🔊 Reproducir sonido del enderman
+            
             salirSound.currentTime = 0;
             await salirSound.play();
 
-            // ✨ Efecto visual mientras suena
+            
             document.body.style.transition = "all 1s ease";
             document.body.style.filter = "brightness(0.3) blur(4px)";
 
-            // ⏱️ Esperar 1 segundo antes de redirigir
+            
             setTimeout(() => {
                 localStorage.removeItem('token');
                 window.location.href = 'index.html';
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 📦 Mostrar productos
+    
     async function fetchProducts() {
         try {
             const res = await fetch('http://localhost:5000/api/products', {
@@ -81,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ➕ Crear producto
+  
     if (productForm) {
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -105,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 message.style.display = 'block';
 
                 if (res.ok) {
-                    // 🔊 REPRODUCIR SONIDO DEL ALDEANO
+                    
                     aldeanoSound.currentTime = 0;
                     aldeanoSound.play();
 
@@ -126,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ✏️ Editar producto
+
     window.editProduct = async (id, name, description, price) => {
         const newName = prompt('Nombre:', name);
         if (newName === null) return;
@@ -171,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 🗑️ Eliminar producto
+    
     window.deleteProduct = async (id) => {
         if (!confirm('¿Estás seguro de eliminar este producto?')) return;
 
@@ -201,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 🚀 Cargar productos al inicio
+    
     fetchProducts();
 
 });

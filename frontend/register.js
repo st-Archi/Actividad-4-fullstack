@@ -1,7 +1,7 @@
 const registerForm = document.getElementById('registerForm');
 const message = document.getElementById('message');
 
-// Ocultar el mensaje al inicio
+
 message.style.display = 'none';
 
 registerForm.addEventListener('submit', async (e) => {
@@ -19,7 +19,7 @@ registerForm.addEventListener('submit', async (e) => {
 
         const data = await res.json();
 
-        // Mostrar el mensaje solo cuando hay contenido
+        
         message.style.display = 'block';
 
         if (res.ok) {
