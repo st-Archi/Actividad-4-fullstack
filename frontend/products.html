@@ -6,22 +6,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Botón cerrar sesión -->
+    <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
+
+    <h2>Gestor de Productos</h2>
+
     <div class="container">
-        <h2>Gestor de Productos</h2>
-        <button id="logoutBtn">Cerrar Sesión</button>
+        <!-- COLUMNA 1: AGREGAR PRODUCTO -->
+        <div>
+            <h3>Agregar Producto</h3>
+            <form id="productForm">
+                <input type="text" id="name" placeholder="Nombre" required>
+                <input type="text" id="description" placeholder="Descripción">
+                <input type="number" id="price" placeholder="Precio" required>
+                <button type="submit">Agregar Producto</button>
+            </form>
+            <div id="message"></div>
+        </div>
 
-        <h3>Agregar Producto</h3>
-        <form id="productForm">
-            <input type="text" id="name" placeholder="Nombre" required>
-            <input type="text" id="description" placeholder="Descripción">
-            <input type="number" id="price" placeholder="Precio" required>
-            <button type="submit">Agregar Producto</button>
-        </form>
-
-        <h3>Lista de Productos</h3>
-        <ul id="productList"></ul>
-        <div id="message"></div>
+        <!-- COLUMNA 2: LISTA DE PRODUCTOS -->
+        <div>
+            <h3>Lista de Productos</h3>
+            <ul id="product-list"></ul>
+        </div>
     </div>
+
+    <!-- 🔊 SONIDOS -->
+    <audio id="aldeanoSound" src="sounds/aldeano.mp3" preload="auto"></audio>
+    <audio id="salirSound" src="sounds/salir.mpeg" preload="auto"></audio>
 
     <script src="products.js"></script>
 </body>

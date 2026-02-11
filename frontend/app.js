@@ -11,7 +11,7 @@ async function register() {
         body: JSON.stringify({ username, password })
     });
     const data = await res.json();
-    alert(data.message || `Registrado como ${data.username}`);
+    alert(data.message || `Regisf8dtrado como ${data.username}`);
 }
 
 // ----- Login -----
@@ -48,18 +48,27 @@ async function loadProducts() {
     const res = await fetch('http://localhost:5000/api/products', {
         headers: { 'Authorization': `Bearer ${token}` }
     });
+
     const products = await res.json();
 
     const list = document.getElementById('product-list');
-    list.innerHTML = '';
+    list.innerHTML = ''; // limpiar lista antes de volver a pintar
 
-    products.forEach(p => {
+    products.forEach(product => {
         const li = document.createElement('li');
+
         li.innerHTML = `
-            ${p.name} - $${p.price} 
-            <button onclick="deleteProduct('${p._id}')">Eliminar</button>
-            <button onclick="editProduct('${p._id}', '${p.name}', '${p.description}', ${p.price})">Editar</button>
+            <div class="product-info">
+                <h4>Nombre: ${product.name}</h4>
+                <p><strong>Descripción:</strong> ${product.description || 'Sin descripción'}</p>
+                <p><strong>Precio:</strong> $${product.price}</p>
+            </div>
+            <div class="product-actions">
+                <button onclick="editProduct('${product._id}', '${product.name}', '${product.description}', ${product.price})">Editar</button>
+                <button onclick="deleteProduct('${product._id}')">Eliminar</button>
+            </div>
         `;
+
         list.appendChild(li);
     });
 }

@@ -1,6 +1,9 @@
 const registerForm = document.getElementById('registerForm');
 const message = document.getElementById('message');
 
+// Ocultar el mensaje al inicio
+message.style.display = 'none';
+
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -16,6 +19,9 @@ registerForm.addEventListener('submit', async (e) => {
 
         const data = await res.json();
 
+        // Mostrar el mensaje solo cuando hay contenido
+        message.style.display = 'block';
+
         if (res.ok) {
             message.style.color = 'green';
             message.innerText = 'Registro exitoso, redirigiendo al login...';
@@ -27,6 +33,8 @@ registerForm.addEventListener('submit', async (e) => {
             message.innerText = data.message;
         }
     } catch (err) {
+        message.style.display = 'block';
+        message.style.color = 'red';
         message.innerText = 'Error en el servidor';
     }
 });

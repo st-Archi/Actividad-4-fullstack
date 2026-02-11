@@ -1,5 +1,9 @@
 const loginForm = document.getElementById('loginForm');
 const message = document.getElementById('message');
+const chestSound = document.getElementById('chestSound');
+
+// Ocultar el mensaje al inicio
+message.style.display = 'none';
 
 // 🔹 Si ya hay token, redirigir automáticamente
 const token = localStorage.getItem('token');
@@ -22,19 +26,37 @@ loginForm.addEventListener('submit', async (e) => {
 
         const data = await res.json();
 
+        // Mostrar el mensaje solo cuando hay contenido
+        message.style.display = 'block';
+
         if (res.ok) {
-            message.style.color = 'green';
-            message.innerText = '¡Inicio de sesión exitoso! Redirigiendo...';
-            // Guardar token en localStorage
+
+            message.style.color = '#7CFC00';
+            message.innerText = 'Iniciando sesión..';
+
+            // 🔊 Reproducir sonido
+            chestSound.currentTime = 0;
+            await chestSound.play();
+
             localStorage.setItem('token', data.token);
+
+            // ✨ Efecto visual más intenso
+            document.body.style.transition = "all 3s ease";
+            document.body.style.filter = "brightness(1.5) blur(6px) hue-rotate(40deg)";
+
+            // 🔥 Esperar 3 segundos antes de redirigir
             setTimeout(() => {
                 window.location.href = 'products.html';
-            }, 1000);
+            }, 3000);
+
         } else {
-            message.style.color = 'red';
+            message.style.color = '#ff4d4d';
             message.innerText = data.message;
         }
+
     } catch (err) {
+        message.style.display = 'block';
+        message.style.color = '#ff4d4d';
         message.innerText = 'Error en el servidor';
     }
 });
