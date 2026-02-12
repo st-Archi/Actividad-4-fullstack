@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Productos - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-card">
+            <h1>Gestor de Productos</h1>
+            
+            <!-- Tabs para cambiar entre Login y Registro -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showLogin()">Iniciar Sesión</button>
+                <button class="tab-btn" onclick="showRegister()">Registrarse</button>
+            </div>
+
+            <!-- Formulario de Login -->
+            <form id="loginForm" class="auth-form">
+                <h2>Iniciar Sesión</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <div id="loginMessage" class="message"></div>
+            </form>
+
+            <!-- Formulario de Registro -->
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <h2>Crear Cuenta</h2>
+                <div class="form-group">
+                    <label for="registerUsername">Nombre de Usuario</label>
+                    <input type="text" id="registerUsername" required placeholder="usuario123">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Contraseña</label>
+                    <input type="password" id="registerPassword" required placeholder="Mínimo 6 caracteres">
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirmar Contraseña</label>
+                    <input type="password" id="registerConfirmPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <div id="registerMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
